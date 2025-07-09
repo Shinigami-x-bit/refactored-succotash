@@ -1,0 +1,183 @@
+body {
+  margin: 0; 
+  background: #121827; 
+  color: #eee; 
+  font-family: Arial, sans-serif;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#header {
+  background: #22283b;
+  padding: 12px 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 2px solid #444;
+}
+
+#tabs {
+  display: flex;
+  background: #1c2240;
+  border-bottom: 1px solid #333;
+  user-select: none;
+}
+
+.tab {
+  flex-grow: 1;
+  padding: 12px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 600;
+  color: #bbb;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tab.active {
+  color: #f9d423;
+  border-bottom: 3px solid #f9d423;
+  background: #2a2f56;
+}
+
+#game-area {
+  flex-grow: 1;
+  background: #0e1229;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Common scoreboard style */
+.scoreboard {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #eee;
+  font-size: 16px;
+  display: flex;
+  gap: 16px;
+  background: rgba(20, 20, 40, 0.8);
+  padding: 8px 12px;
+  border-radius: 8px;
+  user-select: none;
+  z-index: 10;
+}
+
+.scoreboard div {
+  min-width: 60px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Tic Tac Toe Styles */
+#tictactoe-container {
+  width: 600px;
+  height: 480px;
+  position: relative;
+  user-select: none;
+}
+
+#tictactoe-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 15;
+}
+
+#tictactoe-controls select {
+  font-size: 16px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+#renderCanvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: #0f1624;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Sliding Puzzle Styles */
+#puzzle-container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  user-select: none;
+}
+
+#puzzle-board {
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  grid-template-rows: repeat(4, 80px);
+  gap: 6px;
+  background: #222940;
+  padding: 10px;
+  border-radius: 12px;
+  user-select: none;
+}
+
+.puzzle-tile {
+  width: 80px;
+  height: 80px;
+  background: #37425a;
+  border-radius: 8px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #f9d423;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.4);
+  transition: background-color 0.2s;
+}
+
+.puzzle-tile.empty {
+  background: transparent;
+  cursor: default;
+  box-shadow: none;
+}
+
+#puzzle-scoreboard {
+  display: flex;
+  gap: 24px;
+  font-weight: 600;
+  font-size: 16px;
+  color: #f9d423;
+  user-select: none;
+}
+
+#puzzle-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+#puzzle-buttons button {
+  padding: 6px 12px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #37425a;
+  color: #f9d423;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+#puzzle-buttons button:hover {
+  background: #f9d423;
+  color: #222940;
+}
+
