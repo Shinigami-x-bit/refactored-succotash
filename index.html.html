@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="manifest.json" />
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').then(() => {
+        console.log('Service Worker Registered');
+      });
+    }
+  </script>
+
+  <meta charset="UTF-8" />
+  <title>🎵 A Playlist Just for You</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: #f0e6f6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      color: #5a2a83;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    .message {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .photo {
+      width: 150px; 
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+      border: 3px solid #7c4baf;
+      box-shadow: 0 4px 10px rgba(90, 42, 131, 0.4);
+    }
+    .player {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(90, 42, 131, 0.3);
+      width: 320px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    audio {
+      width: 100%;
+      margin-top: 10px;
+    }
+    button {
+      margin-top: 10px;
+      background: #5a2a83;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+    button:hover {
+      background: #7c4baf;
+    }
+    #fileInput {
+      margin-top: 20px;
+      color: #5a2a83;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎵 A Playlist Just for You</h1>
+  <div class="message">Hey you! I made this playlist to brighten your day 💜</div>
+  <img src="lisa.jpeg" alt="Cute photo" class="photo" />
+
+  <div class="player">
+    <div id="songTitle">Select a song to play</div>
+    <audio id="audioPlayer" controls></audio>
+    <br />
+    <button onclick="prevSong()">Prev</button>
+    <button onclick="nextSong()">Next</button>
+  </div>
+
+  <!-- Upload Songs -->
+  <input type="file" id="fileInput" accept="audio/*" multiple />
+  <button onclick="handleFileUpload()">Add Songs</button>
+
+  <script>
+    let songs = [
+      { title: "Song 1", url: "1.mp3" },
+      { title: "Song 2", url: "2.mp3" },
+      { title: "Song 3", url: "3.mp3" },
+      { title: "Song 4", url: "4.mp3" },
+      { title: "Song 5", url: "5.mp3" },
+      { title: "Song 6", url: "6.mp3" },
+      { title: "Song 7", url: "7.mp3" },
+      { title: "Song 8", url: "8.mp3" },
+      { title: "Song 9", url: "9.mp3" },
+      { title: "Song 10", url: "10.mp3" },
+      { title: "Song 11", url: "11.mp3" },
+      { title: "Song 12", url: "12.mp3" },
+      { title: "Song 13", url: "13.mp3" },
+      { title: "Song 14", url: "14.mp3" },
+      { title: "Song 15", url: "15.mp3" },
+      { title: "Song 16", url: "16.mp3" },
+      { title: "Song 17", url: "17.mp3" },
+      { title: "Song 18", url: "18.mp3" },
+      { title: "Song 19", url: "19.mp3" },
+      { title: "Song 20", url: "20.mp3" },
+      { title: "Song 21", url: "21.mp3" },
+      { title: "Song 22", url: "22.mp3" },
+      { title: "Song 23", url: "23.mp3" },
+      { title: "Song 24", url: "24.mp3" },
+      { title: "Song 25", url: "25.mp3" },
+      { title: "Song 26", url: "26.mp3" },
+      { title: "Song 27", url: "27.mp3" },
+      { title: "Song 28", url: "28.mp3" },
+      { title: "Song 29", url: "29.mp3" },
+      { title: "Song 30", url: "30.mp3" },
+      { title: "Song 31", url: "31.mp3" },
+    ];
+
+    let currentIndex = 0;
+    const audioPlayer = document.getElementById("audioPlayer");
+    const songTitle = document.getElementById("songTitle");
+
+    function loadSong(index) {
+      const song = songs[index];
+      audioPlayer.src = song.url;
+      songTitle.textContent = song.title;
+      audioPlayer.play();
+    }
+
+    function prevSong() {
+      currentIndex = (currentIndex - 1 + songs.length) % songs.length;
+      loadSong(currentIndex);
+    }
+
+    function nextSong() {
+      currentIndex = (currentIndex + 1) % songs.length;
+      loadSong(currentIndex);
+    }
+
+    function handleFileUpload() {
+      const files = document.getElementById("fileInput").files;
+      for (let file of files) {
+        const url = URL.createObjectURL(file);
+        songs.push({ title: file.name, url });
+      }
+      alert(`${files.length} song(s) added!`);
+    }
+
+    // Load the first song initially
+    loadSong(currentIndex);
+  </script>
+</body>
+</html>
